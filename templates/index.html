@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Signal Hallucination Detection | Aadish Garg</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="glow-bg"></div>
+    
+    <header class="hero">
+        <nav>
+            <div class="logo">Aadish Garg <span>/ ML Research</span></div>
+            <div class="nav-links">
+                <a href="https://github.com/AADISHGARG05" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/aadish-garg/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <span class="badge">Designed for AI Safety & ML Engineering</span>
+            <h1>Multi-Signal Hallucination <br><span class="gradient-text">Detection System</span></h1>
+            <p class="subtitle">An Explainable Multi-Signal System for Detecting Hallucinations in Large Language Model Outputs</p>
+            <div class="cta-group">
+                <button class="btn-primary" onclick="navigateToAnalysis()">Start Hallucination Analysis</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Challenge of LLM Reliability</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>Hallucinations occur when LLMs generate factually incorrect or nonsensical information with high confidence. In critical sectors like <strong>Healthcare, Education, and Enterprise AI</strong>, these errors can lead to disastrous consequences.</p>
+                    <p>Unlike traditional tools, this system identifies risks without relying on external search or RAG. It analyzes the <strong>internal architecture of language</strong> to predict if a model is "making things up."</p>
+                </div>
+                <div class="about-features">
+                    <ul>
+                        <li><i class="fas fa-microchip"></i> Pattern-based ML detection (Zero-Search)</li>
+                        <li><i class="fas fa-eye"></i> Fully explainable risk scoring metrics</li>
+                        <li><i class="fas fa-shield-alt"></i> Architecture-level linguistic analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="capabilities">
+        <div class="container">
+            <div class="cards-grid">
+                <div class="card">
+                    <i class="fas fa-brain"></i>
+                    <h3>BERT-Based Classifier</h3>
+                    <p>Leverages deep bidirectional representations to classify semantic anomalies within generated sequences.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-layer-group"></i>
+                    <h3>Semantic Consistency</h3>
+                    <p>Evaluates the logical alignment between different segments of the generated text to find contradictions.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-wave-square"></i>
+                    <h3>Linguistic Uncertainty</h3>
+                    <p>Analyzes entropy and lexical patterns that correlate with high-risk, ungrounded model outputs.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Explainable Scoring</h3>
+                    <p>Provides a weighted risk index (Low/Med/High) with transparency into which signal triggered the alert.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <h3>Ready to secure your AI pipeline?</h3>
+            <button class="btn-primary-large" onclick="navigateToAnalysis()">Try the System Now</button>
+            <div class="developer-info">
+                <p>Designed and developed by <strong>Aadish Garg</strong> as a portfolio-grade AI/ML project for MNC-level interviews.</p>
+                <div class="social-footer">
+                    <a href="https://github.com/AADISHGARG05"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://www.linkedin.com/in/aadish-garg/"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

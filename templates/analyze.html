@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyze | Multi-Signal Hallucination Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/analyze.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="glow-bg"></div>
+
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="nav-brand" onclick="window.location.href='/'">
+                <span class="brand-name">H-Detect <span class="version">v1.0</span></span>
+            </div>
+            <button class="btn-back" onclick="window.location.href='/'">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </button>
+        </div>
+    </nav>
+
+    <main class="analysis-container">
+        <section id="input-view" class="view-section active">
+            <div class="header-text">
+                <h1>Hallucination Risk Analyzer</h1>
+                <p>Paste LLM-generated text below to analyze internal linguistic patterns and semantic consistency.</p>
+            </div>
+
+            <div class="input-wrapper">
+                <textarea id="text-input" placeholder="Paste LLM-generated text here (ChatGPT, Gemini, Claude, etc.)..." maxlength="5000"></textarea>
+                <div class="input-footer">
+                    <span id="char-count">0 / 5000 characters</span>
+                </div>
+            </div>
+
+            <button id="analyze-btn" class="btn-primary" onclick="performAnalysis()">
+                <span class="btn-text">Analyze Hallucination Risk</span>
+                <div class="loader hidden"></div>
+            </button>
+            
+            <div class="disclaimer">
+                <i class="fas fa-info-circle"></i>
+                This system identifies architectural patterns of hallucinations. It does not perform fact-checking via external search.
+            </div>
+        </section>
+
+        <section id="results-view" class="view-section hidden">
+            <div class="results-header">
+                <h2>Analysis Results</h2>
+                <div class="risk-summary">
+                    <div class="risk-score-circle">
+                        <svg viewBox="0 0 36 36" class="circular-chart">
+                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path id="score-fill" class="circle" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <text x="18" y="20.35" class="percentage" id="score-text">0%</text>
+                        </svg>
+                    </div>
+                    <div class="risk-label-group">
+                        <span class="label-heading">Overall Risk Level</span>
+                        <span id="risk-status" class="status-badge">Calculating...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="signal-grid">
+                <div class="signal-card">
+                    <div class="signal-info">
+                        <span class="signal-name">BERT Probability</span>
+                        <i class="fas fa-question-circle tooltip-trigger">
+                            <span class="tooltip">Deep learning classification based on sequence representations.</span>
+                        </i>
+                    </div>
+                    <div class="progress-bar"><div id="bert-bar" class="fill"></div></div>
+                </div>
+
+                <div class="signal-card">
+                    <div class="signal-info">
+                        <span class="signal-name">Semantic Consistency</span>
+                        <i class="fas fa-question-circle tooltip-trigger">
+                            <span class="tooltip">Measures logical alignment across generated sentences.</span>
+                        </i>
+                    </div>
+                    <div class="progress-bar"><div id="semantic-bar" class="fill"></div></div>
+                </div>
+
+                <div class="signal-card">
+                    <div class="signal-info">
+                        <span class="signal-name">Linguistic Uncertainty</span>
+                        <i class="fas fa-question-circle tooltip-trigger">
+                            <span class="tooltip">Detects lexical entropy and high-variance token patterns.</span>
+                        </i>
+                    </div>
+                    <div class="progress-bar"><div id="uncertainty-bar" class="fill"></div></div>
+                </div>
+            </div>
+
+            <div class="explanation-box">
+                <h3>Understanding the Score</h3>
+                <p>The risk score is a weighted ensemble of the signals above. A <strong>High Risk</strong> score suggests the text exhibits patterns typical of ungrounded generation. Since this system does not use RAG, it focuses on the internal structural integrity of the output.</p>
+            </div>
+
+            <div class="action-footer">
+                <button class="btn-secondary" onclick="resetAnalysis()">Analyze Another Text</button>
+                <button class="btn-outline" onclick="window.location.href='/'">Return to Home</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/analyze.js') }}"></script>
+</body>
+</html>
