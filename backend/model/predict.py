@@ -1,7 +1,7 @@
 import torch
-from transformers import BertTokenizerFast, BertForSequenceClassification
+from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
 
-MODEL_PATH = "trained_models/bert_hallucination"
+MODEL_PATH = "trained_models/distilbert_hallucination"
 
 _tokenizer = None
 _model = None
@@ -9,8 +9,8 @@ _model = None
 def _load_model():
     global _tokenizer, _model
     if _model is None:
-        _tokenizer = BertTokenizerFast.from_pretrained(MODEL_PATH)
-        _model = BertForSequenceClassification.from_pretrained(
+        _tokenizer = DistilBertTokenizerFast.from_pretrained(MODEL_PATH)
+        _model = DistilBertForSequenceClassification.from_pretrained(
             MODEL_PATH,
             torch_dtype=torch.float32
         )

@@ -1,14 +1,15 @@
 def aggregate_risk(model_prob, semantic_score, linguistic_score):
-    final_risk = (
-        0.45 * model_prob
-        + 0.4 * (1 - semantic_score)
-        + 0.15 * linguistic_score
+    risk = (
+        0.7 * model_prob
+        + 0.2 * (1 - semantic_score)
+        + 0.1 * linguistic_score
     )
-    if final_risk < 0.3:
-        label = "Low"
-    elif final_risk < 0.6:
+
+    if risk > 0.6:
+        label = "High"
+    elif risk > 0.4:
         label = "Medium"
     else:
-        label = "High"
+        label = "Low"
 
-    return round(final_risk, 3), label
+    return risk, label

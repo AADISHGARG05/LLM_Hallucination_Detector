@@ -1,18 +1,17 @@
 import os
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
-
 from model.predict import predict_hallucination_prob
 from signals.semantic import semantic_consistency_score
 from signals.linguistic import linguistic_uncertainty_score
 from utils import aggregate_risk
-
 
 app = Flask(
     __name__,
     template_folder="../templates",
     static_folder="../static"
 )
+
 CORS(app)
 
 @app.route("/")

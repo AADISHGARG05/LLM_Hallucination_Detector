@@ -1,27 +1,22 @@
-from sentence_transformers import SentenceTransformer
 import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
-_model = None
-
-def _get_model():
-    global _model
-    if _model is None:
-        _model = SentenceTransformer("all-MiniLM-L6-v2")
-    return _model
+_vectorizer = TfidfVectorizer(
+    stop_words="english",
+    max_features=5000
+)
 
 def semantic_consistency_score(text: str) -> float:
     sentences = [s.strip() for s in text.split(".") if len(s.strip()) > 5]
     if len(sentences) < 2:
         return 1.0
 
-    model = _get_model()
-    embeddings = model.encode(sentences)
-
+    tfidf = _vectorizer.fit_transform(sentences)
     sims = []
-    for i in range(len(embeddings) - 1):
-        sim = np.dot(embeddings[i], embeddings[i+1]) / (
-            np.linalg.norm(embeddings[i]) * np.linalg.norm(embeddings[i+1])
-        )
+
+    for i in range(len(sentences) - 1):
+        sim = cosine_similarity(tfidf[i], tfidf[i + 1])[0][0]
         sims.append(sim)
 
     return float(np.mean(sims))
