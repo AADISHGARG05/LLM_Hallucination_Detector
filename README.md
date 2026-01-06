@@ -2,15 +2,12 @@
 
 An **explainable, end-to-end machine learning system** that detects **hallucination risk** in AI-generated text using **multiple complementary signals**, including a fine-tuned BERT classifier, semantic consistency analysis, and linguistic uncertainty detection.
 
-> ⚠️ This project **does NOT perform fact-checking or web search**.  
-> Instead, it detects **hallucination patterns** learned from data.
-
 ---
 
 ## 🔗 Live Demo (Deployment)
 
 🚀 **Deployment Link:**  
-👉 *Will be updated soon*
+👉 https://llm-hallucination-detector.onrender.com/
 
 ---
 
